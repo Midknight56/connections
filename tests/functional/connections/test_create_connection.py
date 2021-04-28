@@ -12,6 +12,7 @@ def test_can_create_connection(db, testapp):
     person_to = PersonFactory(first_name='Dwight')
     db.session.commit()
     payload = {
+        'id': 'test',
         'from_person_id': person_from.id,
         'to_person_id': person_to.id,
         'connection_type': 'coworker',
