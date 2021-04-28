@@ -1,4 +1,6 @@
-from factory import Faker, Sequence, SubFactory
+from uuid import uuid4
+
+from factory import Faker, Sequence
 from factory.alchemy import SQLAlchemyModelFactory
 
 from connections.database import db
@@ -18,6 +20,7 @@ class BaseFactory(SQLAlchemyModelFactory):
 class PersonFactory(BaseFactory):
     """Person factory."""
 
+    id = Sequence(lambda n: uuid4())
     email = Sequence(lambda n: f'person{n}@example.com')
     first_name = Faker('first_name')
     last_name = Faker('last_name')
@@ -33,8 +36,9 @@ class ConnectionFactory(BaseFactory):
 
     connection_type = 'friend'
 
-    from_person = SubFactory(PersonFactory)
-    to_person = SubFactory(PersonFactory)
+    id = Sequence(lambda n: uuid4())
+    from_person_id = Sequence(lambda n: uuid4())
+    to_person_id = Sequence(lambda n: uuid4())
 
     class Meta:
 

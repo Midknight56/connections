@@ -18,8 +18,8 @@ class PersonSchema(BaseModelSchema):
 
 
 class ConnectionSchema(BaseModelSchema):
-    from_person_id = fields.Integer()
-    to_person_id = fields.Integer()
+    from_person_id = fields.String()
+    to_person_id = fields.String()
     connection_type = EnumField(ConnectionType)
 
     class Meta:
